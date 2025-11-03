@@ -1,22 +1,13 @@
 # Campus-Event-Management-System
-A Web-based platform for managing campus events including event creation, registration, and feedback.
-## 📁 Repository Structure
-- frontend/ — HTML, CSS, JavaScript files  
-- backend/ — Backend code (API, database)  
-- docs/ — Project Proposal, SRS, SDS, and reports  
-- assets/ — Images, icons, and logos  
+A web-based platform designed to simplify the organization, management, and participation of campus events at Addis Ababa University.  
+CEMS helps students, organizers, and administrators manage events efficiently through a centralized and user-friendly system.
 
 ---
-
-## 👥 Team Members
-- Anatoli Chala — Project Planner  
-- Christian Elias — UI/UX Designer  
-- Menal Abdulkadir — Frontend Developer  
-- Natnael henok — Backend Developer  
-- Ruth Tewodros — Tester 
-- Selam Tewodros —
-- Yordanos Bisrat —
-
+## 🚀 Project Overview
+CEMS aims to:
+- Streamline event creation, registration, and approval.
+- Enhance communication between organizers and students.
+- Provide real-time event updates and management tools.
 ---
 
 ## 🧠 Core Features
@@ -29,9 +20,32 @@ A Web-based platform for managing campus events including event creation, regist
 ---
 
 ## ⚙️ Tech Stack
-- Frontend: HTML, CSS, JavaScript  
-- Backend: Node.js with Express  
-- Database: MongoDB  
+**- Frontend:** HTML, CSS, JavaScript  
+**- Backend:** Node.js with Express  
+**- Database:** MongoDB 
+**- Version Control:** Git & GitHub 
+
+
+## 📁 Repository Structure
+- frontend/ — HTML, CSS, JavaScript files  
+- backend/ — Backend code (API, database)  
+- docs/ — Project Proposal, SRS, SDS, and reports  
+- assets/ — Images, icons, and logos  
+
+---
+
+
+## 👥 Team Members
+- Anatoli Chala — Backend & Database Coordinator  
+- Christian Elias — System Analyst & Documentation Manager  
+- Menal Abdulkadir — Quality Assurance & Testing Lead  
+- Natnael henok — Quality Assurance & Testing Lead  
+- Ruth Tewodros — UI/UX design & Frontend Coordinator 
+- Selam Tewodros — Backend & Database Coordinator
+- Yordanos Bisrat — Project Planner & Workflow Manager
+
+---
+
 
 ---
 
@@ -47,3 +61,6 @@ A Web-based platform for managing campus events including event creation, regist
 
 ## 🧷 License
 This project is open source under the [MIT License](LICENSE).
+
+## 💬 Acknowledgements
+Special thanks to Addis Ababa University and our instructor Nuniyat  for their guidance and support.
