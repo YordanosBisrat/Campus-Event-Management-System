@@ -25,3 +25,6 @@ app.listen(PORT, () => {
 });
 const testRoutes = require('./routes/test.routes');
 app.use('/api/test', testRoutes);
+
+const eventRoutes = require('./routes/event.routes');
+app.use('/api/events', eventRoutes);
