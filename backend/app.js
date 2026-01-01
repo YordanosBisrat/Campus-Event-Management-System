@@ -28,3 +28,6 @@ app.use('/api/test', testRoutes);
 
 const eventRoutes = require('./routes/event.routes');
 app.use('/api/events', eventRoutes);
+
+const registrationRoutes = require('./routes/registration.routes');
+app.use('/api/registrations', registrationRoutes);
