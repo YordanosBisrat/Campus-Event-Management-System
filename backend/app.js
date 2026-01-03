@@ -31,3 +31,6 @@ app.use('/api/events', eventRoutes);
 
 const registrationRoutes = require('./routes/registration.routes');
 app.use('/api/registrations', registrationRoutes);
+
+const adminRoutes = require('./routes/admin.routes');
+app.use('/api/admin', adminRoutes);
