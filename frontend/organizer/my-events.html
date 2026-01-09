@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Events | Organizer</title>
+  <link rel="stylesheet" href="../css/base.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">Campus Events</div>
+      <div class="nav-menu">
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="create-event.html" class="nav-link">Create Event</a>
+        <a href="my-events.html" class="nav-link active">My Events</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE CONTENT -->
+  <main class="page-content container">
+
+    <div class="section-header">
+      <h2>My Created Events</h2>
+      <p class="text-muted">
+        Track the approval status of events you submitted
+      </p>
+    </div>
+
+    <!-- STATUS LEGEND -->
+    <div class="status-legend">
+      <span class="event-badge badge-pending">Pending</span>
+      <span class="event-badge badge-approved">Approved</span>
+      <span class="event-badge badge-rejected">Rejected</span>
+    </div>
+
+    <div id="events" class="events-grid">
+      <!-- Events injected by JS -->
+    </div>
+
+  </main>
+
+  <script src="../js/organizer-events.js"></script>
+</body>
+</html>

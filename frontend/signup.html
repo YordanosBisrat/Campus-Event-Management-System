@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sign Up | Campus Events</title>
+  <link rel="stylesheet" href="css/base.css" />
+</head>
+<body>
+
+  <main class="page-content container" style="max-width: 400px;">
+    <h2>Create Account</h2>
+    <p class="text-muted">Join the campus events platform</p>
+
+    <form id="signupForm">
+      <input type="text" id="name" placeholder="Full Name" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+
+      <select id="role">
+        <option value="student">Student</option>
+        <option value="organizer">Organizer</option>
+      </select>
+
+      <button class="btn btn-primary" style="width:100%">
+        Sign Up
+      </button>
+    </form>
+
+    <p id="message" class="text-muted" style="margin-top:1rem;"></p>
+
+    <p class="text-muted" style="margin-top:1rem;">
+      Already have an account?
+      <a href="login.html">Login</a>
+    </p>
+  </main>
+
+  <script src="js/signup.js"></script>
+</body>
+</html>
