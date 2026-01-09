@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Student Events</title>
+  <link rel="stylesheet" href="../css/base.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">Campus Events</div>
+      <div class="nav-menu">
+        <a href="events.html" class="nav-link active">Events</a>
+        <a href="my-events.html" class="nav-link">My Events</a>
+        <a href="../login.html" class="nav-link">Logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE CONTENT -->
+  <main class="page-content container">
+    <div class="section-header">
+      <h2>Upcoming Events</h2>
+      <p class="text-muted">Browse and register for campus events</p>
+    </div>
+
+    <!-- SEARCH / FILTER -->
+    <div class="filter-bar">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search events..."
+      />
+    </div>
+
+    <!-- EVENTS GRID -->
+    <div id="events" class="events-grid">
+      <!-- Event cards injected by JS -->
+    </div>
+
+    <!-- EMPTY STATE -->
+    <p id="noEvents" class="text-muted hidden">
+      No events available.
+    </p>
+  </main>
+
+  <!-- SCRIPT -->
+  <script src="../js/student.js"></script>
+
+</body>
+</html>
