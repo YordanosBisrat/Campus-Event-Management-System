@@ -1,27 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Campus Event Management System</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NU Events</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="css/index.css">
+  <style>
+   
+  </style>
 </head>
 <body>
-  <header>
-    <h2>Campus Event Management System</h2>
-  </header>
 
+<header>
   <div class="container">
-    <nav class="sidebar">
-      <ul>
-        <li>Dashboard</li>
-        <li>Events</li>
-        <li>Logout</li>
-      </ul>
+    <nav>
+      <div class="logo"><a href="./index.html"><img src="./assets/logo.png" alt="NU Logo"></a></div>
+      <div class="nav-menu">
+        <a href="./index.html">Home</a>
+        <a href="./events-page.html">Events</a>
+        <a href="./dashboard.html">Dashboard</a>
+        <a href="./about-page.html">About</a>
+        <a href="./contact-us.html">Contact</a>
+        <div class="auth-btns">
+          <button class="login"><a href="./login.html">Login</a></button>
+          <button class="register"><a href="./register.html">Register</a></button>
+        </div>
+      </div>
     </nav>
-
-    <main class="content">
-      <h3>Welcome</h3>
-    </main>
   </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <h1>Discover Campus<br>Events Effortlessly</h1>
+        <div class="subtitle">Browse, Register, and Stay Updated on All Campus Events</div>
+        <a href="./events-page.html" class="btn">Explore Events</a>
+      </div>
+      <img 
+        src="./assets/6bf5998b59446fc0e14a044b2bf8013e0749093a.png" 
+        alt="Campus events collage" 
+        class="hero-img"
+      >
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Upcoming Events</h2>
+    <p class="section-subtitle">Don't miss out on these exciting events happening soon on campus</p>
+
+    <div class="events-grid" id="upcomingEvents">
+      <!-- Events will be loaded here dynamically -->
+      <div class="no-events" id="noEventsMessage" style="display:none;">
+        No upcoming events found at the moment.
+      </div>
+    </div>
+
+    <a href="./events-page.html" class="btn center-btn">View All Events</a>
+  </div>
+</section>
+
+<section class="why">
+  <div class="container">
+    <h2 class="section-title">Why NU Events?</h2>
+    <p class="section-subtitle" style="max-width:720px;">Your one-stop solution for discovering and managing campus life</p>
+
+    <div class="why-grid">
+      <div class="feature-card">
+        <div class="icon-circle" style="color:var(--primary);"><i class="fas fa-calendar-alt"></i></div>
+        <h3>Easy Registration</h3>
+        <p>Register for events with just a few clicks.<br>No hassle, no paperwork.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon-circle" style="color:#f59e0b;"><i class="fas fa-bell"></i></div>
+        <h3>Real-time Updates</h3>
+        <p>Get instant notifications about event<br>changes and reminders.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon-circle" style="color:#10b981;"><i class="fas fa-th-large"></i></div>
+        <h3>Centralized Calendar</h3>
+        <p>View all campus events in one place with<br>our integrated calendar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <h2>Ready to Get Started?</h2>
+    <p>Join thousands of students already using NU Events to enhance their campus experience</p>
+    <div class="btn-group">
+      <a href="./register.html" class="btn btn-white">Create Account</a>
+      <a href="./events-page.html" class="btn">Browse Events</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="color:white;">NU</div>
+        <p style="margin-top:16px;">Your one-stop platform for discovering and managing campus events at NU.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./events-page.html">Events</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">Student Portal</a></li>
+          <li><a href="#">Organizer Guide</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact Us</h4>
+        <p>📧 events@nu.edu.et</p>
+        <p>📍 NU Campus, Main Building</p>
+        <div class="social-links" style="margin-top:20px;">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      © 2026 NU Events. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script src="js/index.js">
+ 
+</script>
+
 </body>
 </html>

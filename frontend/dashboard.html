@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard | NU Events</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <!-- FullCalendar CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css"
+      rel="stylesheet"
+    />
+    <!--  custom dashboard styles -->
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <!-- Chart.js CDN (for admin charts) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- FullCalendar JS -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="nav-container">
+        <div class="logo">
+          <a href="./index.html">
+            <img src="./assets/logo.png" alt="NU Logo" />
+          </a>
+        </div>
+        <div class="nav-links">
+          <a href="./events-page.html">Events</a>
+          <a href="dashboard.html">Dashboard</a>
+          <a href="#" onclick="logout()">Logout</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="dashboard-header">
+        <h1>Your Dashboard</h1>
+        <div class="role-badge" id="roleBadge">Loading role...</div>
+      </div>
+
+      <!-- STUDENT VIEW -->
+      <div id="studentView" style="display: none">
+        <h2 class="section-title">My Registered Events</h2>
+        <div class="events-grid" id="studentEvents"></div>
+        <div id="noStudentEvents" class="empty-state" style="display: none">
+          You haven't registered for any events yet.
+        </div>
+        <!-- Student Feedback Modal -->
+        <div id="feedbackModal" class="modal" style="display: none">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2>Give Feedback</h2>
+              <span class="close-modal" onclick="closeFeedbackModal()">×</span>
+            </div>
+
+            <!-- This line MUST exist -->
+            <h3
+              id="feedbackEventTitle"
+              style="
+                text-align: center;
+                margin-bottom: 1.5rem;
+                color: var(--primary);
+              "
+            ></h3>
+
+            <form id="feedbackForm">
+              <input type="hidden" id="feedbackEventId" />
+              <div class="form-group">
+                <label for="rating">Rating (1–5):</label>
+                <input
+                  type="range"
+                  id="rating"
+                  min="1"
+                  max="5"
+                  required
+                  placeholder="1 to 5"
+                />
+              </div>
+              <div class="form-group">
+                <label for="comment">Comment (optional):</label>
+                <textarea
+                  id="comment"
+                  placeholder="Your thoughts about the event..."
+                ></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">
+                Submit Feedback
+              </button>
+            </form>
+            <div id="feedbackMessage" class="message"></div>
+          </div>
+        </div>
+
+        <!-- NEW: Student Calendar -->
+        <h2 class="section-title" style="margin-top: 3rem">Event Calendar</h2>
+        <div
+          class="calendar-legend"
+          style="margin-bottom: 1.5rem; text-align: center"
+        >
+          <span class="legend-item">
+            <span class="legend-color" style="background: #10b981"></span>
+            Your Registered Events
+          </span>
+          <span class="legend-item">
+            <span class="legend-color" style="background: #1e40af"></span>
+            Other Upcoming Events
+          </span>
+        </div>
+        <div id="calendar" style="max-width: 1200px; margin: 0 auto"></div>
+      </div>
+
+      <!-- ORGANIZER VIEW – unchanged -->
+      <div id="organizerView" style="display: none">
+        <div style="margin-bottom: 2rem">
+          <a href="./create-event-organizer.html" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Create New Event
+          </a>
+        </div>
+
+        <h2 class="section-title">My Events</h2>
+        <div class="events-grid" id="organizerEvents"></div>
+        <div id="noOrganizerEvents" class="empty-state" style="display: none">
+          You haven't created any events yet.
+        </div>
+      </div>
+      <!-- Organizer View Feedback Modal -->
+      <div id="feedbackViewModal" class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Event Feedback</h2>
+            <span class="close-modal" onclick="closeFeedbackViewModal()"
+              >×</span
+            >
+          </div>
+          <div
+            id="feedbackAverage"
+            style="
+              text-align: center;
+              font-size: 1.4rem;
+              margin-bottom: 1.5rem;
+              color: var(--primary);
+            "
+          ></div>
+          <div
+            id="feedbackList"
+            style="max-height: 350px; overflow-y: auto; padding-right: 10px"
+          ></div>
+        </div>
+      </div>
+
+      <!-- ADMIN VIEW – unchanged -->
+      <div id="adminView" style="display: none">
+        <h2 class="section-title">Platform Statistics</h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-calendar-days"></i></div>
+            <div class="stat-value" id="totalEvents">—</div>
+            <div class="stat-label">Total Events</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-hourglass-half"></i></div>
+            <div class="stat-value" id="pendingEvents">—</div>
+            <div class="stat-label">Pending</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+            <div class="stat-value" id="approvedEvents">—</div>
+            <div class="stat-label">Approved</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-times-circle"></i></div>
+            <div class="stat-value" id="rejectedEvents">—</div>
+            <div class="stat-label">Rejected</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-users"></i></div>
+            <div class="stat-value" id="totalRegistrations">—</div>
+            <div class="stat-label">Total Users</div>
+          </div>
+        </div>
+
+        <h2 class="section-title">Platform Analytics</h2>
+        <div class="chart-container">
+          <h3>Events Created Over Time (Last 12 Months)</h3>
+          <canvas id="eventsOverTimeChart"></canvas>
+        </div>
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+          "
+        >
+          <div class="chart-container">
+            <h3>Top 5 Events by Registrations</h3>
+            <canvas id="topEventsChart"></canvas>
+          </div>
+          <div class="chart-container">
+            <h3>Events by Status</h3>
+            <canvas id="statusPieChart"></canvas>
+          </div>
+        </div>
+
+        <h2 class="section-title">Pending Events for Review</h2>
+        <div class="events-grid" id="pendingEventsList"></div>
+        <div id="noPending" class="empty-state" style="display: none">
+          No pending events to review.
+        </div>
+      </div>
+    </main>
+
+    <!-- Edit Modal (for organizer) -->
+    <div id="editModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Edit Event</h2>
+          <span class="close-modal" onclick="closeModal()">&times;</span>
+        </div>
+        <form id="editForm">
+          <input type="hidden" id="editEventId" />
+
+          <div class="form-group">
+            <label for="editTitle">Title</label>
+            <input type="text" id="editTitle" required />
+          </div>
+
+          <div class="form-group">
+            <label for="editDescription">Description</label>
+            <textarea id="editDescription" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="editDate">Date</label>
+            <input type="date" id="editDate" required />
+          </div>
+
+          <div class="form-group">
+            <label for="editLocation">Location</label>
+            <input type="text" id="editLocation" required />
+          </div>
+
+          <div class="form-group">
+            <label>Current Image</label>
+            <img
+              id="currentImage"
+              style="
+                max-width: 100%;
+                max-height: 200px;
+                display: none;
+                margin-top: 0.5rem;
+              "
+              alt="Current event image"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="editImage">New Image (optional)</label>
+            <input type="file" id="editImage" accept="image/*" />
+            <img
+              id="editImagePreview"
+              style="
+                max-width: 100%;
+                max-height: 200px;
+                display: none;
+                margin-top: 0.5rem;
+              "
+              alt="Preview"
+            />
+          </div>
+
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+          <button type="button" class="btn btn-outline" onclick="closeModal()">
+            Cancel
+          </button>
+        </form>
+        <div id="editMessage" class="message"></div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">NU Events</div>
+          <p>
+            Your one-stop platform for discovering and managing campus events at
+            NU.
+          </p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <a href="events.html">Events</a>
+          <a href="dashboard.html">Dashboard</a>
+          <a href="#">About Us</a>
+          <a href="#">FAQ</a>
+        </div>
+        <div>
+          <h4>Contact Us</h4>
+          <p>📧 events@nu.edu.et</p>
+          <p>📍 NU Campus, Main Building</p>
+        </div>
+      </div>
+      <div class="copyright">© 2026 NU Events. All rights reserved.</div>
+    </footer>
+
+    <script src="js/dashboard.js"></script>
+  </body>
+</html>

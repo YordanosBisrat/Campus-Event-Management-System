@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create New Event | NU Events</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  
+  <link rel="stylesheet" href="css/create-event-organizer.css">
+</head>
+<body>
+
+<header>
+  <div class="nav-container">
+    <div class="logo"><a href="index.html"><img src="./assets/logo.png" alt="NU Events Logo"></a></div>
+    <div class="nav-links">
+      <a href="./events-page.html">Events</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="#" onclick="logout()">Logout</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="form-card">
+    <h1>Create New Event</h1>
+
+    <form id="createEventForm">
+
+      <div class="form-group">
+        <label for="title">Event Title *</label>
+        <input type="text" id="title" name="title" required placeholder="e.g. AI & Machine Learning Workshop"/>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description *</label>
+        <textarea id="description" name="description" required placeholder="Tell participants what the event is about..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="date">Date *</label>
+        <input type="date" id="date" name="date" required/>
+      </div>
+
+      <div class="form-group">
+        <label for="location">Location *</label>
+        <input type="text" id="location" name="location" required placeholder="e.g. Tech Lab, Building A"/>
+      </div>
+
+      <div class="form-group">
+        <label for="image">Event Image (optional)</label>
+        <input type="file" id="image" name="image" accept="image/*"/>
+        <div class="image-preview-container">
+          <img id="imagePreview" alt="Image preview"/>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary" id="submitBtn">Create Event</button>
+
+      <div id="message"></div>
+    </form>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 NU Events. All rights reserved.</p>
+</footer>
+
+<script src="js/create-event-organizer.js"></script>
+
+
+</body>
+</html>

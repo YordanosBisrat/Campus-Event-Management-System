@@ -1,3 +1,4 @@
+// frontend/js/admin.js
 async function createEvent() {
   const data = {
     title: document.getElementById("title").value,

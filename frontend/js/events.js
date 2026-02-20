@@ -1,3 +1,4 @@
+// frontend/js/events.js
 async function createEvent() {
   const token = localStorage.getItem("token");
 

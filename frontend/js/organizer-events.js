@@ -1,3 +1,4 @@
+// frontend/js/organizer-events.js
 console.log("Organizer my-events loaded");
 
 const token = localStorage.getItem("token");
@@ -6,7 +7,7 @@ if (!token) {
   window.location.href = "../login.html";
 }
 
-fetch("http://localhost:5000/api/events/my", {
+fetch("http://localhost:5000/api/events/getMyEvents", {
   headers: {
     Authorization: `Bearer ${token}`
   }
