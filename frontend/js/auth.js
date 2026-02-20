@@ -1,3 +1,4 @@
+// frontend/js/auth.js
 const form = document.getElementById("loginForm");
 const message = document.getElementById("message");
 
@@ -36,13 +37,12 @@ form.addEventListener("submit", async (e) => {
 
     // ✅ Role-based redirect
     if (role === "admin") {
-      window.location.href = "admin/dashboard.html";
+      window.location.href = "dashboard.html";
     } else if (role === "organizer") {
-      window.location.href = "organizer/create-event.html";
+      window.location.href = "dashboard.html";
     } else {
-      window.location.href = "student/events.html";
+      window.location.href = "dashboard.html";
     }
-
   } catch (error) {
     console.error("Login error:", error);
     message.textContent = "Server error. Try again.";

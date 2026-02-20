@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About NU Events</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  
+  <link rel="stylesheet" href="css/about-page.css">
+    
+ 
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <div class="logo"><a href="./index.html"><img src="./assets/logo.png" alt="NU Logo"></a></div>
+      <div class="nav-menu">
+        <a href="./index.html">Home</a>
+        <a href="./events-page.html">Events</a>
+        <a href="./dashboard.html">Dashboard</a>
+        <a href="./about-page.html">About</a>
+        <a href="./contact-us.html">Contact</a>
+        <div class="auth-btns">
+          <button class="login"><a href="./login.html">Login</a></button>
+          <button class="register"><a href="./register.html">Register</a></button>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <h1>About NU Events</h1>
+    <p>Connecting students, organizers, and campus life through one powerful platform.</p>
+  </div>
+</section>
+
+<section class="mission">
+  <div class="container">
+    <h2 class="section-title">Our Mission & Vision</h2>
+
+    <div class="mission-grid">
+      <div class="mission-card">
+        <i class="fas fa-rocket"></i>
+        <h3>Our Mission</h3>
+        <p>To make every campus event discoverable, accessible, and enjoyable for every student and organizer at NU.</p>
+      </div>
+
+      <div class="mission-card">
+        <i class="fas fa-lightbulb"></i>
+        <h3>Our Vision</h3>
+        <p>A vibrant, connected campus where no student misses out on opportunities, inspiration, and community because of lack of information.</p>
+      </div>
+
+      <div class="mission-card">
+        <i class="fas fa-users"></i>
+        <h3>Our Values</h3>
+        <p>Inclusivity • Innovation • Transparency • Community • Simplicity</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery">
+  <div class="container">
+    <h2 class="section-title">Campus Life Gallery</h2>
+    <p class="section-subtitle">Moments that make NU special – captured from real events</p>
+
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- Gallery items will be added here -->
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <h2>Be Part of the NU Events Story</h2>
+    <p>Join us in building the most exciting campus event experience at NU</p>
+    <div class="btn-group">
+      <a href="./events-page.html" class="btn">Browse Events</a>
+      <a href="./register.html" class="btn btn-white">Create Account</a>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox for gallery -->
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close" id="lightboxClose">×</span>
+  <img id="lightboxImage" src="" alt="Gallery image">
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="color:white;">NU</div>
+        <p style="margin-top:16px;">Your one-stop platform for discovering and managing campus events at NU.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./events-page.html">Events</a></li>
+          <li><a href="./about.html">About</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">Student Portal</a></li>
+          <li><a href="#">Organizer Guide</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact Us</h4>
+        <p>📧 events@nu.edu.et</p>
+        <p>📍 NU Campus, Main Building</p>
+        <div class="social-links" style="margin-top:20px;">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      © 2026 NU Events. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Gallery images (replace src with your real images)
+  const galleryImages = [
+    { src: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800", alt: "Students at workshop" },
+    { src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800", alt: "Seminar audience" },
+    { src: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800", alt: "Tech event" },
+    { src: "https://images.unsplash.com/photo-1553356084-58ef4a67b2a7?w=800", alt: "Cultural festival" },
+    { src: "https://images.unsplash.com/photo-1522202176988-66273c2b8e0e?w=800", alt: "Campus gathering" },
+    { src: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800", alt: "Group photo" }
+  ];
+
+  // Render gallery
+  const galleryGrid = document.getElementById('galleryGrid');
+  galleryImages.forEach(img => {
+    const item = document.createElement('div');
+    item.className = 'gallery-item';
+    item.innerHTML = `
+      <img src="${img.src}" alt="${img.alt}">
+      <div class="gallery-overlay">${img.alt}</div>
+    `;
+    item.addEventListener('click', () => {
+      document.getElementById('lightboxImage').src = img.src;
+      document.getElementById('lightbox').style.display = 'flex';
+    });
+    galleryGrid.appendChild(item);
+  });
+
+  // Lightbox close
+  document.getElementById('lightboxClose').addEventListener('click', () => {
+    document.getElementById('lightbox').style.display = 'none';
+  });
+
+  // Close lightbox on outside click
+  document.getElementById('lightbox').addEventListener('click', e => {
+    if (e.target === e.currentTarget) {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+  });
+</script>
+
+</body>
+</html>

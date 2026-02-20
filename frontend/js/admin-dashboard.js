@@ -1,3 +1,4 @@
+// frontend/js/admin-dashboard.js
 console.log("Admin dashboard loaded");
 
 const token = localStorage.getItem("token");

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us | NU Events</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  
+  <link rel="stylesheet" href="css/contact-us.css">
+   
+  
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <div class="logo"><a href="./index.html"><img src="./assets/logo.png" alt="NU Logo"></a></div>
+      <div class="nav-menu">
+        <a href="./index.html">Home</a>
+        <a href="./events-page.html">Events</a>
+        <a href="./dashboard.html">Dashboard</a>
+        <a href="./about-page.html">About</a>
+        <a href="./contact-us.html">Contact</a>
+        <div class="auth-btns">
+          <button class="login"><a href="./login.html">Login</a></button>
+          <button class="register"><a href="./register.html">Register</a></button>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <h1>Get in Touch</h1>
+    <p>We'd love to hear from you. Whether you have a question about an event, want to collaborate, or just want to say hi — reach out!</p>
+  </div>
+</section>
+
+<section class="contact-section">
+  <div class="container">
+    <div class="contact-grid">
+      <!-- Contact Info -->
+      <div class="contact-info">
+        <h3>Contact Information</h3>
+        <p>We're here to help. Feel free to reach out using any of the methods below.</p>
+
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <div>
+            <strong>Email:</strong><br>
+            <a href="mailto:events@nu.edu.et">events@nu.edu.et</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <i class="fas fa-phone-alt"></i>
+          <div>
+            <strong>Phone:</strong><br>
+            +251 911 234 567<br>
+            Mon–Fri: 9:00 AM – 5:00 PM
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <div>
+            <strong>Address:</strong><br>
+            NU Main Campus<br>
+            Main Building, Ground Floor<br>
+            Addis Ababa, Ethiopia
+          </div>
+        </div>
+
+        <div class="social-links">
+          <h4>Follow Us</h4>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="contact-form">
+        <h3>Send Us a Message</h3>
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required placeholder="Your name">
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" required placeholder="e.g. Event Inquiry">
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required placeholder="How can we help you?"></textarea>
+          </div>
+
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+
+        <div id="formMessage" class="form-message" style="display:none;"></div>
+      </div>
+    </div>
+
+    <!-- Google Map -->
+    <div class="map-container">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3471.6326045878145!2d38.76108540720752!3d9.039754724659822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b8f9597581da1%3A0x72e8366f31dff8eb!2z4Yqg4Yuy4Yi1IOGKoOGJoOGJoyA1IOGKquGIjiDhiqLhipXhjIXhipDhiKrhipXhjI0g4Yqr4Yid4Y2T4Yi1IHwgQUEgVW5pdmVyc2l0eSA1IGtpbG8gQ2FtcHVz!5e1!3m2!1sen!2set!4v1769242698881!5m2!1sen!2set" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <h2>We're Here for You</h2>
+    <p>Have questions? Feedback? Want to partner with us? Drop us a line — we respond within 24 hours.</p>
+    <a href="./events-page.html" class="btn">Browse Events Instead</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="color:white;">NU</div>
+        <p style="margin-top:16px;">Your one-stop platform for discovering and managing campus events at NU.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./events-page.html">Events</a></li>
+          <li><a href="./about.html">About</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">Student Portal</a></li>
+          <li><a href="#">Organizer Guide</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact Us</h4>
+        <p>📧 events@nu.edu.et</p>
+        <p>📍 NU Campus, Main Building</p>
+        <div class="social-links" style="margin-top:20px;">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      © 2026 NU Events. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Simple form handling (client-side demo)
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const formMessage = document.getElementById('formMessage');
+    formMessage.style.display = 'block';
+
+    // Simulate success (replace with real fetch to backend later)
+    setTimeout(() => {
+      formMessage.textContent = "Thank you! Your message has been sent. We'll get back to you soon.";
+      formMessage.className = 'form-message success';
+      this.reset();
+    }, 800);
+  });
+</script>
+
+</body>
+</html>

@@ -1,3 +1,4 @@
+// frontend/js/admin-pending.js
 console.log("Admin pending events loaded");
 
 const token = localStorage.getItem("token");

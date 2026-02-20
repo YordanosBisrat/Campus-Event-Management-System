@@ -1,3 +1,4 @@
+// frontend/js/organizer-create-event.js
 console.log("Organizer create-event loaded");
 
 const token = localStorage.getItem("token");

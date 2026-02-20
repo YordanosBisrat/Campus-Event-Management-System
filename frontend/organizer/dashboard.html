@@ -2,57 +2,583 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Organizer Dashboard</title>
-  <link rel="stylesheet" href="../css/base.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard | NU Events</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root {
+      --navy: #0f2b5b;
+      --primary: #1e40af;
+      --primary-dark: #1e3a8a;
+      --light-bg: #f8fafc;
+      --gray: #4b5563;
+      --light-gray: #6b7280;
+      --border: #d1d5db;
+      --success: #10b981;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --card-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      font-family: system-ui, sans-serif;
+      background: var(--light-bg);
+      color: var(--navy);
+      line-height: 1.6;
+    }
+
+    header {
+      background: white;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo { font-size: 2rem; font-weight: bold; color: var(--primary); }
+
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--navy);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.05rem;
+    }
+
+    .nav-links a:hover { color: var(--primary); }
+
+    main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem;
+    }
+
+    .dashboard-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .dashboard-header h1 {
+      font-size: 2.6rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .role-badge {
+      display: inline-block;
+      padding: 0.45rem 1.3rem;
+      background: var(--primary);
+      color: white;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .section-title {
+      font-size: 1.9rem;
+      margin: 2.8rem 0 1.6rem;
+      color: var(--navy);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.6rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.6rem;
+      box-shadow: var(--card-shadow);
+      text-align: center;
+      transition: transform 0.18s;
+    }
+
+    .stat-card:hover { transform: translateY(-4px); }
+
+    .stat-icon { font-size: 2.4rem; color: var(--primary); margin-bottom: 0.8rem; }
+
+    .stat-value { font-size: 2.2rem; font-weight: 700; margin-bottom: 0.3rem; }
+
+    .stat-label { color: var(--gray); font-size: 1.05rem; }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .event-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .event-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+    }
+
+    .event-content { padding: 1.4rem; }
+
+    .event-title { font-size: 1.32rem; margin-bottom: 0.6rem; color: var(--navy); }
+
+    .event-description {
+      color: var(--gray);
+      font-size: 0.97rem;
+      margin-bottom: 1rem;
+      line-height: 1.45;
+    }
+
+    .event-meta {
+      color: var(--light-gray);
+      font-size: 0.94rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .event-meta p { margin: 0.35rem 0; }
+
+    .event-actions {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.65rem 1.3rem;
+      border-radius: 6px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+
+    .btn-primary    { background: var(--primary); color: white; }
+    .btn-success    { background: var(--success); color: white; }
+    .btn-danger     { background: var(--danger);   color: white; }
+    .btn-outline    { background: transparent; border: 1px solid var(--primary); color: var(--primary); }
+
+    .btn:hover {
+      filter: brightness(0.92);
+      transform: translateY(-1px);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.35em 0.9em;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+
+    .badge-pending  { background: #fef3c7; color: #92400e; }
+    .badge-approved { background: #d1fae5; color: #065f46; }
+    .badge-rejected { background: #fee2e2; color: #991b1b; }
+
+    .empty-state {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--gray);
+      font-size: 1.15rem;
+    }
+
+    footer {
+      background: var(--navy);
+      color: #dbeafe;
+      padding: 3.5rem 2rem 2rem;
+      margin-top: 5rem;
+    }
+
+    .footer-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .footer-logo { font-size: 1.9rem; color: white; margin-bottom: 1rem; }
+
+    footer a { color: #dbeafe; text-decoration: none; display: block; margin-bottom: 0.6rem; }
+
+    footer a:hover { color: white; }
+
+    .copyright {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid #3b82f650;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .stats-grid, .events-grid { grid-template-columns: 1fr; }
+      .nav-links { gap: 1.2rem; font-size: 0.95rem; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- NAVBAR -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <div class="nav-brand">Campus Events</div>
-      <div class="nav-menu">
-        <a href="dashboard.html" class="nav-link active">Dashboard</a>
-        <a href="create-event.html" class="nav-link">Create Event</a>
-        <a href="my-events.html" class="nav-link">My Events</a>
-      </div>
+<header>
+  <div class="nav-container">
+    <div class="logo">NU</div>
+    <div class="nav-links">
+      <a href="events.html">Events</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="#" onclick="logout()">Logout</a>
     </div>
-  </nav>
+  </div>
+</header>
 
-  <!-- PAGE CONTENT -->
-  <main class="page-content container">
-    <div class="section-header">
-      <h2>Organizer Dashboard</h2>
-      <p class="text-muted">
-        Manage and submit campus events for approval
-      </p>
+<main>
+
+  <div class="dashboard-header">
+    <h1>Your Dashboard</h1>
+    <div class="role-badge" id="roleBadge">Loading role...</div>
+  </div>
+
+  <!-- STUDENT VIEW -->
+  <div id="studentView" style="display:none;">
+    <h2 class="section-title">My Registered Events</h2>
+    <div class="events-grid" id="studentEvents"></div>
+    <div id="noStudentEvents" class="empty-state" style="display:none;">
+      You haven't registered for any events yet.
+    </div>
+  </div>
+
+  <!-- ORGANIZER VIEW -->
+  <div id="organizerView" style="display:none;">
+    <div style="margin-bottom:2rem;">
+      <a href="create-event.html" class="btn btn-primary">
+        <i class="fas fa-plus"></i> Create New Event
+      </a>
     </div>
 
-    <!-- ACTION CARDS -->
+    <h2 class="section-title">My Events</h2>
+    <div class="events-grid" id="organizerEvents"></div>
+    <div id="noOrganizerEvents" class="empty-state" style="display:none;">
+      You haven't created any events yet.
+    </div>
+  </div>
+
+  <!-- ADMIN VIEW -->
+  <div id="adminView" style="display:none;">
+    <h2 class="section-title">Platform Statistics</h2>
     <div class="stats-grid">
-
       <div class="stat-card">
-        <h3>Create New Event</h3>
-        <p class="text-muted">
-          Submit a new event for admin approval
-        </p>
-        <a href="create-event.html" class="btn btn-primary btn-sm">
-          Create Event
-        </a>
+        <div class="stat-icon"><i class="fas fa-calendar-days"></i></div>
+        <div class="stat-value" id="totalEvents">—</div>
+        <div class="stat-label">Total Events</div>
       </div>
-
       <div class="stat-card">
-        <h3>My Events</h3>
-        <p class="text-muted">
-          View your submitted events and their status
-        </p>
-        <a href="my-events.html" class="btn btn-outline btn-sm">
-          View Events
-        </a>
+        <div class="stat-icon"><i class="fas fa-users"></i></div>
+        <div class="stat-value" id="totalUsers">—</div>
+        <div class="stat-label">Total Users</div>
       </div>
-
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fas fa-hourglass-half"></i></div>
+        <div class="stat-value" id="pendingEvents">—</div>
+        <div class="stat-label">Pending Events</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+        <div class="stat-value" id="approvedEvents">—</div>
+        <div class="stat-label">Approved</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fas fa-times-circle"></i></div>
+        <div class="stat-value" id="rejectedEvents">—</div>
+        <div class="stat-label">Rejected</div>
+      </div>
     </div>
-  </main>
 
+    <h2 class="section-title">Pending Events for Review</h2>
+    <div class="events-grid" id="pendingEventsList"></div>
+    <div id="noPending" class="empty-state" style="display:none;">
+      No pending events to review.
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">NU Events</div>
+      <p>Your one-stop platform for discovering and managing campus events at NU.</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <a href="events.html">Events</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="#">About Us</a>
+      <a href="#">FAQ</a>
+    </div>
+    <div>
+      <h4>Contact Us</h4>
+      <p>📧 events@nu.edu.et</p>
+      <p>📍 NU Campus, Main Building</p>
+    </div>
+  </div>
+  <div class="copyright">
+    © 2026 NU Events. All rights reserved.
+  </div>
+</footer>
+
+<script>
+// ────────────────────────────────────────────────
+//  Shared helpers
+// ────────────────────────────────────────────────
+function logout() {
+  localStorage.removeItem("token");
+  window.location.href = "login.html";
+}
+
+const token = localStorage.getItem("token");
+if (!token) {
+  window.location.href = "login.html";
+}
+
+// Get role from JWT (same as your auth.js)
+let role = "student";
+try {
+  const payload = JSON.parse(atob(token.split(".")[1]));
+  role = (payload.role || "student").toLowerCase();
+} catch (err) {
+  console.error("Cannot read role from token", err);
+  alert("Session error → redirecting to login");
+  logout();
+}
+
+document.getElementById("roleBadge").textContent = role.charAt(0).toUpperCase() + role.slice(1);
+
+// Show correct section
+document.getElementById("studentView").style.display    = role === "student" ? "block" : "none";
+document.getElementById("organizerView").style.display = role === "organizer" ? "block" : "none";
+document.getElementById("adminView").style.display     = role === "admin" ? "block" : "none";
+
+// ────────────────────────────────────────────────
+//  Load data based on role
+// ────────────────────────────────────────────────
+if (role === "student") {
+  loadStudentDashboard();
+} else if (role === "organizer") {
+  loadOrganizerDashboard();
+} else if (role === "admin") {
+  loadAdminDashboard();
+}
+
+// ────────────────────────────────────────────────
+//  STUDENT: My Registered Events
+// ────────────────────────────────────────────────
+function loadStudentDashboard() {
+  fetch("http://localhost:5000/api/registrations/me", {
+    headers: { Authorization: `Bearer ${token}` }
+  })
+    .then(res => {
+      if (!res.ok) throw new Error("Failed to load registrations");
+      return res.json();
+    })
+    .then(registrations => {
+      const container = document.getElementById("studentEvents");
+      container.innerHTML = "";
+
+      if (registrations.length === 0) {
+        document.getElementById("noStudentEvents").style.display = "block";
+        return;
+      }
+
+      registrations.forEach(reg => {
+        const event = reg.event || {};
+        const card = document.createElement("div");
+        card.className = "event-card";
+        card.innerHTML = `
+          <div class="event-content">
+            <h3 class="event-title">${event.title || "Untitled Event"}</h3>
+            <p class="event-description">${(event.description || "").substring(0,140)}${(event.description || "").length > 140 ? "..." : ""}</p>
+            <div class="event-meta">
+              <p>📍 ${event.location || "—"}</p>
+              <p>📅 ${event.date ? new Date(event.date).toLocaleDateString() : "—"}</p>
+            </div>
+            <span class="badge badge-approved">Registered</span>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    })
+    .catch(err => {
+      console.error(err);
+      document.getElementById("studentEvents").innerHTML = "<p style='color:#ef4444;'>Failed to load your registrations</p>";
+    });
+}
+
+// ────────────────────────────────────────────────
+//  ORGANIZER: My Events
+// ────────────────────────────────────────────────
+function loadOrganizerDashboard() {
+  fetch("http://localhost:5000/api/events/my", {
+    headers: { Authorization: `Bearer ${token}` }
+  })
+    .then(res => {
+      if (!res.ok) throw new Error("Failed to load your events");
+      return res.json();
+    })
+    .then(events => {
+      const container = document.getElementById("organizerEvents");
+      container.innerHTML = "";
+
+      if (events.length === 0) {
+        document.getElementById("noOrganizerEvents").style.display = "block";
+        return;
+      }
+
+      events.forEach(event => {
+        const status = (event.status || "pending").toLowerCase();
+        const card = document.createElement("div");
+        card.className = "event-card";
+        card.innerHTML = `
+          <div class="event-content">
+            <span class="badge badge-${status}">${status.toUpperCase()}</span>
+            <h3 class="event-title">${event.title}</h3>
+            <p class="event-description">${(event.description || "").substring(0,120)}${(event.description || "").length > 120 ? "..." : ""}</p>
+            <div class="event-meta">
+              <p>📍 ${event.location}</p>
+              <p>📅 ${new Date(event.date).toLocaleDateString()}</p>
+            </div>
+            <div class="event-actions">
+              <button class="btn btn-outline btn-sm" disabled>Edit</button>
+              <button class="btn btn-outline btn-sm" disabled>Delete</button>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    })
+    .catch(err => {
+      console.error(err);
+      document.getElementById("organizerEvents").innerHTML = "<p style='color:#ef4444;'>Failed to load your events</p>";
+    });
+}
+
+// ────────────────────────────────────────────────
+//  ADMIN: Stats + Pending Events
+// ────────────────────────────────────────────────
+function loadAdminDashboard() {
+  // 1. Platform stats (from your admin controller)
+  fetch("http://localhost:5000/api/admin/stats", {
+    headers: { Authorization: `Bearer ${token}` }
+  })
+    .then(res => {
+      if (!res.ok) throw new Error("Unauthorized");
+      return res.json();
+    })
+    .then(stats => {
+      document.getElementById("totalEvents").textContent   = stats.totalEvents   ?? 0;
+      document.getElementById("pendingEvents").textContent = stats.pendingEvents ?? 0;
+      document.getElementById("approvedEvents").textContent = stats.approvedEvents ?? 0;
+      document.getElementById("rejectedEvents").textContent = stats.rejectedEvents ?? 0;
+      // totalUsers is also available from your controller
+      // document.getElementById("totalUsers").textContent = stats.totalUsers ?? 0;
+    })
+    .catch(err => {
+      console.error(err);
+      alert("Failed to load admin statistics");
+    });
+
+  // 2. Pending events list
+  fetch("http://localhost:5000/api/events/admin/pending", {
+    headers: { Authorization: `Bearer ${token}` }
+  })
+    .then(res => {
+      if (!res.ok) throw new Error("Access denied");
+      return res.json();
+    })
+    .then(events => {
+      const container = document.getElementById("pendingEventsList");
+      container.innerHTML = "";
+
+      if (events.length === 0) {
+        document.getElementById("noPending").style.display = "block";
+        return;
+      }
+
+      events.forEach(event => {
+        const card = document.createElement("div");
+        card.className = "event-card";
+        card.innerHTML = `
+          <div class="event-content">
+            <span class="badge badge-pending">PENDING</span>
+            <h3 class="event-title">${event.title}</h3>
+            <p class="event-description">${(event.description || "").substring(0,140)}${(event.description || "").length > 140 ? "..." : ""}</p>
+            <div class="event-meta">
+              <p>📍 ${event.location}</p>
+              <p>📅 ${new Date(event.date).toLocaleDateString()}</p>
+              <p>👤 ${event.createdBy?.name || "Unknown organizer"}</p>
+            </div>
+            <div class="event-actions">
+              <button class="btn btn-success" onclick="approveEvent('${event._id}')">Approve</button>
+              <button class="btn btn-danger"    onclick="rejectEvent('${event._id}')">Reject</button>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    })
+    .catch(err => {
+      console.error(err);
+      document.getElementById("pendingEventsList").innerHTML = "<p style='color:#ef4444;'>Failed to load pending events</p>";
+    });
+}
+
+function approveEvent(id) {
+  if (!confirm("Approve this event?")) return;
+  patchEventStatus(id, "approve");
+}
+
+function rejectEvent(id) {
+  if (!confirm("Reject this event?")) return;
+  patchEventStatus(id, "reject");
+}
+
+function patchEventStatus(id, action) {
+  fetch(`http://localhost:5000/api/events/admin/${action}/${id}`, {
+    method: "PATCH",
+    headers: { Authorization: `Bearer ${token}` }
+  })
+    .then(res => {
+      if (!res.ok) throw new Error("Action failed");
+      return res.json();
+    })
+    .then(data => {
+      alert(data.message || `Event ${action}d successfully`);
+      location.reload();
+    })
+    .catch(err => {
+      console.error(err);
+      alert("Failed to update event status");
+    });
+}
+</script>
 </body>
 </html>

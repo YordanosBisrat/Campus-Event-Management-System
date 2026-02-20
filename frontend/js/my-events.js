@@ -1,3 +1,4 @@
+// frontend/js/my-events.js
 // ===============================
 // STUDENT MY EVENTS PAGE
 // ===============================
